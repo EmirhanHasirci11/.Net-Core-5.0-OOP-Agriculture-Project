@@ -1,0 +1,94 @@
+﻿@using EntityLayer.Concrete
+@model List<Team>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout_.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Takım tablosu</h4>           
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Resim bağlantı yolu
+                            </th>
+                            <th>
+                                Ad
+                            </th>
+                            <th>
+                                Soyad
+                            </th>
+                            <th>
+                                Unvan
+                            </th>
+                          
+                            <th>
+                                Websitesi
+                            </th>
+                            <th>
+                                Facebook
+                            </th>
+                            <th>
+                                Twitter
+                            </th>
+                            <th>
+                                Instagram
+                            </th>
+                            <th colspan="2">
+                                Araçlar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+
+
+                        <tr>
+                            <td>
+                                @item.TeamID
+                            </td>
+                            <td class="py-1">
+                                <img src="@item.ImageUrl" alt="image" />
+                            </td>
+                            <td>
+                                @item.PersonName
+                            </td>
+                            <td>
+                                @item.PersonSurName
+                            </td>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td>
+                                @item.WebsiteUrl
+                            </td>
+                            <td>
+                                @item.FacebookUrl
+                            </td>
+                            <td>
+                                @item.TwitterUrl
+                            </td>
+                            <td>
+                                @item.InstagramUrl
+                            </td>
+                            <td><a class="btn btn-danger" href="/Team/DeleteTeam/@item.TeamID">Sil</a></td>
+                            <td><a class="btn btn-behance" href="/Team/UpdateTeam/@item.TeamID">Güncelle</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <a class="btn btn-info" href="/Team/AddTeam">Yeni personel ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+

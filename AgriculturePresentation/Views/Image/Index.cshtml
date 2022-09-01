@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrete
+@model List<Image>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout_.cshtml";
+}
+
+
+<h1>Resimler Sayfası</h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        th{
+            text-align:center;
+        }
+        td{
+            text-align:center;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Görsel</th>
+                <th>#</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Resim Bağlantı Yolu</th>
+                <th colspan="2">Araçlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.ImageUrl" /></td>
+                    <td>@item.ImageID</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.ImageUrl</td>
+                    <td><a id="DeleteBtn" onclick="return confirm('Silme işlemini yapmak istediğinize emin misiniz')" class="btn btn-danger" href="/Image/DeleteImage/@item.ImageID ">Sil</a></td>
+                    <td><a class="btn btn-primary" href="/Image/UpdateImage/@item.ImageID">Güncelle</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Image/AddImage" class="btn btn-info">Yeni Resim Ekle</a>
+</body>
+</html>
+
+
+

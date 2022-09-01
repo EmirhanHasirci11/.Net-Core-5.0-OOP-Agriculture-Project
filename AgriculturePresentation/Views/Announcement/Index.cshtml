@@ -1,0 +1,65 @@
+﻿@using EntityLayer.Concrete
+@model List<Announcement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout_.cshtml";
+}
+
+
+<h1>Duyurular Listesi</h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        th {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th>Durum değiştir</th>
+                <th colspan="2">Araçlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.AnnouncementID</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@(((DateTime)item.Date).ToString("dd-MMM-yyyy"))</td>
+                    <td>@Html.Raw(item.Status == true ? "<span class='badge bg-success' >Aktif</span>" : "<span class='badge bg-danger' >Pasif</span>")</td>
+                    @if (item.Status == true)
+                    {
+                        <td><a class="btn btn-danger" href="/Announcement/ChangeStatusToFalse/@item.AnnouncementID">Pasif Yap</a></td>
+                    }
+                    else
+                    {
+                        <td><a class="btn btn-success" href="/Announcement/ChangeStatusToTrue/@item.AnnouncementID">Aktif Yap</a></td>
+                    }
+                    <td><a id="DeleteBtn" onclick="return confirm('Silme işlemini yapmak istediğinize emin misiniz')" class="btn btn-danger" href="/Announcement/DeleteAnnouncement/@item.AnnouncementID">Sil</a></td>
+                    <td><a class="btn btn-primary" href="/Announcement/UpdateAnnouncement/@item.AnnouncementID">Güncelle</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Announcement/AddAnnouncement" class="btn btn-info">Yeni Duyuru Ekle</a>
+</body>
+</html>
+
+
+

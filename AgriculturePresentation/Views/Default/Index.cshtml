@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Service>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Hizmetler listesi</h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Başlık</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.ServiceID</td>
+                    <td>@item.Title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

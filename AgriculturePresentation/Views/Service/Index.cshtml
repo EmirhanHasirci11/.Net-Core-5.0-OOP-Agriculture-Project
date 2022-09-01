@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Service>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout_.cshtml";
+}
+
+<h1>Hizmetler listesi</h1>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Görsel</th>
+                <th colspan="2">Araçlar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ServiceID</td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.Image</td>
+                    <td><a id="DeleteBtn" onclick="return confirm('Silme işlemini yapmak istediğinize emin misiniz')" class="btn btn-danger"href="/Service/DeleteService/@item.ServiceID ">Sil</a></td>
+                    <td><a  class="btn btn-primary"href="/Service/UpdateService/@item.ServiceID ">Güncelle</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Service/AddService" class="btn btn-info">Yeni servis ekle</a>
+</body>
+</html>
+
